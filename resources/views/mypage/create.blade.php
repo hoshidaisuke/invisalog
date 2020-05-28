@@ -20,11 +20,11 @@
                             <tbody>
                                 <tr>
                                     <th>医院名</th>
-                                    <td><input type="text" name="clinic_name"></td>
+                                    <td><input type="text" name="clinic[name]"></td>
                                 </tr>
                                <tr>
                                     <th>都道府県【必須】</th>
-                                    <td><select name="pref_id">
+                                    <td><select name="clinic[prefecture_id]">
                                         <option value="" selected>都道府県</option>
                                         <option value="1">北海道</option>
                                         <option value="2">青森県</option>
@@ -77,19 +77,22 @@
                                 </tr>
                                 <tr>
                                     <th>治療期間【必須】</th>
-                                    <td><input type="text" name="start" id="datepicker"></td>
+                                    <td>
+                                        <input type="text" name="review[started_at]" id="datepicker">
+                                        <input type="text" name="review[ended_at]" id="datepicker">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Twitter</th>
-                                    <td><input type="url" name="Twitter"></td>
+                                    <td><input type="url" name="twitter"></td>
                                 </tr>
                                 <tr>
                                     <th>Instagram</th>
-                                    <td><input type="url" name="Instagram"></td>
+                                    <td><input type="url" name="instagram"></td>
                                 </tr>
                                 <tr>
                                     <th>口コミ</th>
-                                    <td><textarea name="review"></textarea></td>
+                                    <td><textarea name="review[review]"></textarea></td>
                                 </tr>
                             </tbody>
                         </table>
