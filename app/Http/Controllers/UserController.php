@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Clinic;
+use App\Http\Requests\MypageRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -31,20 +35,33 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\MypageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MypageRequest $request)
     {
-        $user = new User;
-        $user->name = $request->input('name');
-        $user->pref_id = $request->input('pref_id');
-        $user->start = $request->input('start');
-        $user->twitter = $request->input('Twitter');
-        $user->instagram = $request->input('Instagram');
-        $user->review = $request->input('review');
-        $user->save();
-        return redirect('mypage/index');
+        // FormRequestからデータを取得
+        // https://laravel.com/docs/7.x/validation#form-request-validation
+        $form = $request->validated();
+
+        // 複数テーブルへの処理を行う為、トランザクションをはる
+        // https://laravel.com/docs/7.x/database#database-transactions
+        DB::transaction(function () use($form) {
+            // usersテーブルの更新
+            $user = Auth::user();
+            $user->fill($form)->save();
+
+            // https://laravel.com/docs/7.x/eloquent#other-creation-methods
+            $clinic = Clinic::updateOrCreate($form['clinic'], []);
+
+            // Reviewとのリレーションを貼る前提
+            $user->review()->updateOrCreate(
+                [ 'clinic_id' => $clinic->id ],
+                $form['review']
+            );
+            return redirect('mypage/index');
+        });
+
     }
 
     /**
