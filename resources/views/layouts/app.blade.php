@@ -58,13 +58,22 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/mypage/index">
+                                        {{ __('マイページ') }}
+                                    </a>
+                                    <a class="dropdown-item" href="/mypage/index">
+                                        {{ __('プロフィールを編集する') }}
+                                    </a>
+                                    <a class="dropdown-item" href="/mypage/index">
+                                        {{ __('日記を書く') }}
+                                    </a>
+                                    <a class="dropdown-item" href="/mypage/index">
+                                        {{ __('日記を編集する') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <a class="dropdown-item" href="/mypage/index">
-                                        {{ __('マイページ') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
