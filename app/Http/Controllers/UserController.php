@@ -59,6 +59,8 @@ class UserController extends Controller
                 [ 'clinic_id' => $clinic->id ],
                 $form['review']
             );
+            dd($user);
+            dd($clinic);
             return redirect('mypage/index');
         });
 

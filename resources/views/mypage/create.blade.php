@@ -78,8 +78,8 @@
                                 <tr>
                                     <th>治療期間【必須】</th>
                                     <td>
-                                        <input type="text" name="review[started_at]" id="datepicker">
-                                        <input type="text" name="review[ended_at]" id="datepicker">
+                                        <input type="text" name="review[started_at]" class="date_sample">
+                                        <input type="text" name="review[ended_at]" class="date_sample">
                                     </td>
                                 </tr>
                                 <tr>
@@ -100,12 +100,7 @@
                     <input type="submit" class="btn btn-info" value="登録する">
                     </form>
 
-                    <!-- <script type="text/javascript">
-                        $('#datepicker').datepicker({
-                            autoclose: true,
-                            format: 'yyyy-mm-dd'
-                        });
-                    </script> -->
+
                 </div>
             </div>
         </div>

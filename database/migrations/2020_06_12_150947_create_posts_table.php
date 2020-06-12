@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiaryImagesTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateDiaryImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('diary_images', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('diary_id');
-            $table->string('url');
+            $table->unsignedBigInteger('user_id');
+            $table->string('content');
             $table->timestamps();
+
+            // 外部キー制約
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -28,6 +31,6 @@ class CreateDiaryImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diary_images');
+        Schema::dropIfExists('posts');
     }
 }
