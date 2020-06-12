@@ -19,8 +19,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'twitter',
-        'instagram',
     ];
 
     /**
@@ -40,4 +38,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * このユーザが所有する投稿
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

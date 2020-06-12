@@ -11,18 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-  return view('index');
-});
+Route::get('/', 'PostsController@index');
 Route::group(['prefix' => 'mypage', 'middleware' => 'auth'] , function() {
   Route::get('index', 'UserController@index')->name('mypage.index');
   Route::get('create', 'UserController@create')->name('mypage.create');
   Route::post('store', 'UserController@store')->name('mypage.store');
 });
-
-
-
+Route::group(['middleware' => ['auth']], function () {
+  Route::resource('posts', 'PostsController', ['only' => ['store', 'destroy']]);
+});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('diaries/diary', 'DiaryController@index');

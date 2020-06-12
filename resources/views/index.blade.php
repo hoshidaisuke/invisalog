@@ -13,13 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <ul>
-                        <li><a href="/">どのくらい痛みますか ?</a></li>
-                        <li><a href="/">どのくらい痛みますか ?</a></li>
-                        <li><a href="/">どのくらい痛みますか ?</a></li>
-                        <li><a href="/">どのくらい痛みますか ?</a></li>
-                        <li><a href="/">どのくらい痛みますか ?</a></li>
-                    </ul>
+                    {{ dd($posts) }}
                 </div>
             </div>
         </div>
