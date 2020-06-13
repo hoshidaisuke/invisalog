@@ -13,7 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ dd($posts) }}
+
+                    <ul>
+                        @foreach($posts as $post)
+                            <li><a href="/">{!! nl2br(e($post->content)) !!}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

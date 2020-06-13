@@ -9,9 +9,8 @@ class PostsController extends Controller
     public function index()
     {
         $data = [];
+        $posts = App\Post::find(1)->content;
         // 認証済みユーザを取得
-        $user = \Auth::user();
-        $posts = $user->posts();
 
         return view('index', ['posts' => $posts]);
     }
